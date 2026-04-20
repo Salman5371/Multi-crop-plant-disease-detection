@@ -205,3 +205,27 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project-specific dataset folders
+data/raw/
+data/processed/
+
+# Trained model files
+models/*.pth
+models/*.pt
+models/*.onnx
+models/*.tflite
+
+# Experiment outputs
+outputs/logs/
+outputs/figures/
+outputs/confusion_matrices/
+outputs/gradcam/
+outputs/tables/
+
+# Large data/result files
+*.csv
+*.xlsx
+*.zip
+*.tar.gz
+*.7z
