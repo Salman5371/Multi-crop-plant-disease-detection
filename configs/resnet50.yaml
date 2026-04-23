@@ -1,0 +1,12 @@
+model_name: ResNet50
+num_classes: 94
+image_size: 224
+batch_size: 8
+epochs: 1
+learning_rate: 0.0001
+num_workers: 0
+pin_memory: true
+
+dataset_path: D:/plant_disease_data/bd_crop_dataset
+model_save_dir: E:/Research/Multi-crop-plant-disease-detection/models
+output_dir: E:/Research/Multi-crop-plant-disease-detection/outputs
