@@ -1,0 +1,30 @@
+
+DATASET DISTRIBUTION ANALYSIS REPORT
+============================================================
+
+Total images  : 123588
+Total crops   : 14
+Total classes : 94
+
+Dataset split:
+split  image_count  percentage
+ test        12423       10.05
+train        86467       69.96
+valid        24698       19.98
+
+Largest class:
+Banana_leaf_Healthy = 6258 images
+
+Smallest class:
+Potato_Black_Scurf = 49 images
+
+Class imbalance ratio:
+Largest class / smallest class = 127.71
+
+Interpretation:
+The dataset contains multiple crop groups and 94 disease or healthy classes.
+However, the distribution of images is not uniform across all classes.
+Some classes have substantially higher sample counts, while some classes
+have very limited samples. This class imbalance may affect model learning,
+especially for minority disease classes. Therefore, class-wise performance
+analysis is important for interpreting the model results beyond overall accuracy.
