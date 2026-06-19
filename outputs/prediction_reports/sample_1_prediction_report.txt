@@ -3,7 +3,8 @@ SMART FARMING DISEASE DETECTION REPORT
 
 Input Information
 ------------------------------------------------------------
-Image Path       : Data\sample\sample_1.jpg
+Image Name       : sample_1.jpg
+Image Path       : E:\Research\Multi-crop-plant-disease-detection\Data\sample\sample_1.jpg
 
 Prediction Result
 ------------------------------------------------------------

@@ -3,6 +3,7 @@ SMART FARMING DISEASE DETECTION REPORT
 
 Input Information
 ------------------------------------------------------------
+Image Name       : test_leaf.jpg
 Image Path       : E:\Research\Multi-crop-plant-disease-detection\Data\sample\test_leaf.jpg
 
 Prediction Result
