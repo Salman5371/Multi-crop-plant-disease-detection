@@ -1,0 +1,15 @@
+MODEL EFFICIENCY ANALYSIS REPORT
+======================================================================
+
+Device used: cuda
+Input image size: 224 x 224
+Batch size: 1
+Timing runs: 50
+
+           model      builder_function  total_parameters  total_parameters_million  trainable_parameters  trainable_parameters_million  model_size_mb  inference_time_ms_per_image  estimated_fps  accuracy  f1_score weight_loading_status
+     MobileNetV2     build_mobilenetv2           2344286                     2.344               2344286                         2.344           9.18                        5.634         177.49    0.9453    0.9444   Loaded successfully
+        ResNet50        build_resnet50          23700638                    23.701              23700638                        23.701          90.72                        6.521         153.35    0.9555    0.9550   Loaded successfully
+EfficientNetV2-S build_efficientnetv2s          20297902                    20.298              20297902                        20.298          78.30                       22.106          45.24    0.9575    0.9571   Loaded successfully
+
+Interpretation:
+The efficiency analysis compares the three trained models in terms of parameter count, model size, inference time, accuracy, and F1-score. This analysis is important for smart farming applications because a model should not only be accurate but also computationally practical for real-world decision-support systems.
