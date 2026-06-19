@@ -1,0 +1,24 @@
+
+TOP-5 PREDICTION ANALYSIS REPORT
+============================================================
+
+Total sample images analyzed: 4
+
+Summary:
+   image_name          top1_class top1_crop top1_disease_status  top1_confidence_percent              top2_class  top2_confidence_percent  confidence_gap_top1_top2                             case_type
+ sample_1.jpg      Potato_Dry_Rot    Potato             Dry Rot                    20.32       Rice_downy_mildew                    16.85                      3.47 Low-confidence / uncertain prediction
+ sample_2.jpg      Cotton_Healthy    Cotton             Healthy                    94.37     Cauliflower_Healthy                     2.06                     92.31                  Confident prediction
+ sample_3.jpg    Corn_Common_Rust      Corn         Common Rust                    94.02       Wheat_stripe_rust                     5.84                     88.18                  Confident prediction
+test_leaf.jpg Tomato_Early_Blight    Tomato        Early Blight                    65.99 Cotton_Bacterial blight                    23.00                     42.99 Low-confidence / uncertain prediction
+
+Interpretation:
+Top-5 prediction analysis was conducted to better understand model uncertainty.
+When the top-1 confidence is low or the confidence gap between the top-1 and top-2
+predictions is small, the model output should be interpreted cautiously. This is
+particularly important for smart farming decision-support systems because a wrong
+high-level decision based on an uncertain image may mislead farmers.
+
+This analysis also helps explain cases where noisy, low-quality, watermarked, or
+out-of-distribution images produce incorrect or unstable predictions. Therefore,
+the system should recommend manual verification when the model confidence is low
+or when multiple disease classes receive similar confidence scores.
