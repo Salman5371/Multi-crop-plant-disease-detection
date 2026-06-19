@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+import pandas as pd
 import streamlit as st
 import torch
 import torch.nn.functional as F
@@ -41,6 +42,7 @@ TEMP_DIR = ROOT_DIR / "outputs" / "temp_uploads"
 
 IMAGE_SIZE = 224
 DISPLAY_IMAGE_SIZE = 450
+TOP_K = 5
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -135,19 +137,40 @@ def extract_crop_and_disease(class_name):
     return crop, disease
 
 
-def predict_image(model, image, class_names):
+def predict_image(model, image, class_names, top_k=TOP_K):
+    """
+    Predict Top-1 and Top-K classes.
+    """
     image_tensor = preprocess_image(image).to(DEVICE)
 
     with torch.no_grad():
         outputs = model(image_tensor)
         probabilities = F.softmax(outputs, dim=1)
-        confidence, predicted_index = torch.max(probabilities, dim=1)
 
-    predicted_index = predicted_index.item()
-    confidence = confidence.item()
+        top_probs, top_indices = torch.topk(probabilities, k=top_k, dim=1)
+
+    top_probs = top_probs.squeeze(0).cpu().numpy()
+    top_indices = top_indices.squeeze(0).cpu().numpy()
+
+    top_predictions = []
+
+    for rank, (idx, prob) in enumerate(zip(top_indices, top_probs), start=1):
+        class_name = class_names[int(idx)]
+        crop, disease = extract_crop_and_disease(class_name)
+
+        top_predictions.append({
+            "Rank": rank,
+            "Predicted Class": class_name,
+            "Crop": crop,
+            "Disease / Status": disease,
+            "Confidence (%)": round(float(prob) * 100, 2)
+        })
+
+    predicted_index = int(top_indices[0])
     predicted_class = class_names[predicted_index]
+    confidence = float(top_probs[0])
 
-    return predicted_class, confidence, predicted_index
+    return predicted_class, confidence, predicted_index, top_predictions
 
 
 def save_uploaded_image(uploaded_file):
@@ -170,6 +193,7 @@ def save_prediction_report(
     crop,
     disease,
     confidence,
+    top_predictions,
     severity,
     severity_note,
     recommendations,
@@ -188,7 +212,7 @@ def save_prediction_report(
         f.write("-" * 60 + "\n")
         f.write(f"Image Name       : {image_name}\n\n")
 
-        f.write("Prediction Result\n")
+        f.write("Top-1 Prediction Result\n")
         f.write("-" * 60 + "\n")
         f.write(f"Predicted Index  : {predicted_index}\n")
         f.write(f"Predicted Class  : {predicted_class}\n")
@@ -196,7 +220,18 @@ def save_prediction_report(
         f.write(f"Disease/Status   : {disease}\n")
         f.write(f"Confidence       : {confidence * 100:.2f}%\n\n")
 
-        f.write("Severity / Risk Indication\n")
+        f.write("Top-5 Prediction Results\n")
+        f.write("-" * 60 + "\n")
+        for item in top_predictions:
+            f.write(
+                f"Rank {item['Rank']}: "
+                f"{item['Predicted Class']} | "
+                f"Crop: {item['Crop']} | "
+                f"Disease/Status: {item['Disease / Status']} | "
+                f"Confidence: {item['Confidence (%)']}%\n"
+            )
+
+        f.write("\nSeverity / Risk Indication\n")
         f.write("-" * 60 + "\n")
         f.write(f"Level            : {severity}\n")
         f.write(f"Note             : {severity_note}\n\n")
@@ -225,6 +260,7 @@ This web application uses a trained **EfficientNetV2-S** deep learning model to 
 
 It provides:
 - crop and disease prediction
+- Top-5 prediction results
 - confidence score
 - preliminary severity/risk indication
 - rule-based management recommendation
@@ -238,6 +274,7 @@ st.sidebar.write(f"**Device:** {DEVICE}")
 st.sidebar.write("**Model:** EfficientNetV2-S")
 st.sidebar.write("**Input size:** 224 × 224")
 st.sidebar.write(f"**Display image size:** Max {DISPLAY_IMAGE_SIZE} × {DISPLAY_IMAGE_SIZE}")
+st.sidebar.write(f"**Top-K predictions:** {TOP_K}")
 
 try:
     model, class_names = load_model_and_classes()
@@ -263,14 +300,15 @@ if uploaded_file is not None:
     st.image(display_image, caption=uploaded_file.name)
 
     st.caption(
-        "Note: For better prediction, upload a clear leaf image without watermark, text, heavy background, or blur."
+        "Note: For better prediction, upload a clear close-up leaf image without watermark, text, heavy background, or blur."
     )
 
     with st.spinner("Analyzing image..."):
-        predicted_class, confidence, predicted_index = predict_image(
+        predicted_class, confidence, predicted_index, top_predictions = predict_image(
             model=model,
             image=image,
-            class_names=class_names
+            class_names=class_names,
+            top_k=TOP_K
         )
 
         crop, disease = extract_crop_and_disease(predicted_class)
@@ -296,6 +334,7 @@ if uploaded_file is not None:
             crop=crop,
             disease=disease,
             confidence=confidence,
+            top_predictions=top_predictions,
             severity=severity,
             severity_note=severity_note,
             recommendations=recommendations,
@@ -304,7 +343,7 @@ if uploaded_file is not None:
 
     st.success("Prediction completed")
 
-    st.subheader("Prediction Result")
+    st.subheader("Top-1 Prediction Result")
 
     col1, col2 = st.columns(2)
 
@@ -317,6 +356,21 @@ if uploaded_file is not None:
         st.metric("Predicted Index", predicted_index)
 
     st.write(f"**Predicted Class:** `{predicted_class}`")
+
+    if confidence < 0.70:
+        st.warning(
+            "The model confidence is low. Please upload another clear image or verify manually."
+        )
+
+    if confidence >= 0.90:
+        st.info(
+            "The model confidence is high. However, high confidence does not always guarantee correctness, especially for noisy or out-of-distribution images."
+        )
+
+    st.subheader("Top-5 Prediction Results")
+
+    top5_df = pd.DataFrame(top_predictions)
+    st.dataframe(top5_df, use_container_width=True)
 
     st.subheader("Severity / Risk Indication")
     st.warning(f"**Level:** {severity}")
