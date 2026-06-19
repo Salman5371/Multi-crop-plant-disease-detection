@@ -1,0 +1,40 @@
+SMART FARMING DISEASE DETECTION REPORT
+============================================================
+
+Input Information
+------------------------------------------------------------
+Image Name       : banana-leaves-yellow-showing-signs-260nw-2736640381.webp
+
+Prediction Result
+------------------------------------------------------------
+Predicted Index  : 31
+Predicted Class  : Jute_Golden Mosaic
+Crop             : Jute
+Disease/Status   : Golden Mosaic
+Confidence       : 98.46%
+
+Severity / Risk Indication
+------------------------------------------------------------
+Level            : High attention required
+Note             : The model is highly confident about disease presence. Immediate monitoring is recommended.
+
+Management Recommendation
+------------------------------------------------------------
+1. Remove and destroy severely infected leaves or plant parts where appropriate.
+2. Avoid unnecessary overhead irrigation to reduce leaf wetness.
+3. Improve field sanitation and remove crop residues that may carry pathogens.
+4. Maintain proper plant spacing to improve air circulation.
+5. Monitor nearby plants regularly for similar symptoms.
+
+Alert Message
+------------------------------------------------------------
+
+SMART FARMING ALERT
+
+Crop: Jute
+Detected Problem: Golden Mosaic
+Confidence: 98.46%
+Severity / Risk Level: High attention required
+
+Recommended Action:
+Please inspect the affected plant area carefully and follow the suggested management recommendations.

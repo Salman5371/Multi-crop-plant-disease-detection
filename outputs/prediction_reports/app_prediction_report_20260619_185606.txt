@@ -1,0 +1,41 @@
+SMART FARMING DISEASE DETECTION REPORT
+============================================================
+
+Input Information
+------------------------------------------------------------
+Image Name       : Dz._rūsa_z.tritikāle_2015.jpg
+
+Prediction Result
+------------------------------------------------------------
+Predicted Index  : 93
+Predicted Class  : Wheat_stripe_rust
+Crop             : Wheat
+Disease/Status   : Stripe Rust
+Confidence       : 27.78%
+
+Severity / Risk Indication
+------------------------------------------------------------
+Level            : Low confidence / uncertain
+Note             : The prediction is uncertain. Manual inspection or another image is recommended.
+
+Management Recommendation
+------------------------------------------------------------
+1. Remove and destroy severely infected leaves or plant parts where appropriate.
+2. Avoid unnecessary overhead irrigation to reduce leaf wetness.
+3. Improve field sanitation and remove crop residues that may carry pathogens.
+4. Maintain proper plant spacing to improve air circulation.
+5. Monitor nearby plants regularly for similar symptoms.
+6. For rust-like symptoms, remove infected leaves and avoid dense planting.
+
+Alert Message
+------------------------------------------------------------
+
+SMART FARMING ALERT
+
+Crop: Wheat
+Detected Problem: Stripe Rust
+Confidence: 27.78%
+Severity / Risk Level: Low confidence / uncertain
+
+Recommended Action:
+Please inspect the affected plant area carefully and follow the suggested management recommendations.
