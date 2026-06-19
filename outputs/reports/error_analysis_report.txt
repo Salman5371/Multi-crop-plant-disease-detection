@@ -1,0 +1,42 @@
+
+ERROR ANALYSIS REPORT
+============================================================
+
+Model: EfficientNetV2-S
+Test samples: 12423
+Correct predictions: 11895
+Wrong predictions: 528
+Test accuracy from prediction file: 0.9575
+
+Lowest performing classes by F1-score:
+                         class_name  precision   recall  f1-score  support
+                   Banana_Crown_Rot   0.647059 0.379310  0.478261     29.0
+                    Potato_Blackleg   0.400000 0.666667  0.500000      6.0
+       Banana_leaf__Panama_Disease.   0.586207 0.607143  0.596491     28.0
+                    Potato_Pink_Rot   1.000000 0.428571  0.600000      7.0
+               Potato_Miscellaneous   0.714286 0.555556  0.625000      9.0
+Banana_Black_Pitting_or_Banana_Rust   0.790262 0.531486  0.635542    397.0
+              Banana_fungal_disease   0.574822 0.855124  0.687500    283.0
+                     Banana_Healthy   0.684211 0.722222  0.702703     18.0
+                 Potato_Common_Scab   0.625000 0.833333  0.714286      6.0
+                    Tea_Anthracnose   0.571429 1.000000  0.727273      8.0
+
+Top confused class pairs:
+                         true_class                     predicted_class  confusion_count  true_class_support  confusion_rate_percent
+Banana_Black_Pitting_or_Banana_Rust               Banana_fungal_disease              174                 397                   43.83
+              Banana_fungal_disease Banana_Black_Pitting_or_Banana_Rust               37                 283                   13.07
+                   Banana_Crown_Rot Banana_Black_Pitting_or_Banana_Rust               17                  29                   58.62
+        Guava_fruit_Styler_end_root             Guava_fruit_Anthracnose               16                 237                    6.75
+                     Guava_leaf_Dot                     Guava_leaf_Rust               13                 154                    8.44
+       Banana_leaf__Panama_Disease.          Banana_leaf_Black_Sigatoka               11                  28                   39.29
+         Banana_leaf_Black_Sigatoka        Banana_leaf__Panama_Disease.               11                  85                   12.94
+            Guava_fruit_Anthracnose         Guava_fruit_Styler_end_root               11                 238                    4.62
+                Corn_Gray_Leaf_Spot                         Corn_Blight                8                  58                   13.79
+                        Corn_Blight                 Corn_Gray_Leaf_Spot                8                 115                    6.96
+
+Interpretation:
+The error analysis identifies classes where the model has lower performance and
+class pairs where misclassification occurs frequently. Low-performing classes may
+be affected by limited sample size, visual similarity between disease symptoms,
+or noisy input patterns. This analysis is important because overall accuracy alone
+does not fully explain the strengths and weaknesses of the model across all 94 classes.
