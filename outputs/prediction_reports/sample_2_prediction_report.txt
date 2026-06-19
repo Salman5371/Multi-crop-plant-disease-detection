@@ -1,0 +1,37 @@
+SMART FARMING DISEASE DETECTION REPORT
+============================================================
+
+Input Information
+------------------------------------------------------------
+Image Path       : Data\sample\sample_2.jpg
+
+Prediction Result
+------------------------------------------------------------
+Predicted Class  : Cotton_Healthy
+Crop             : Cotton
+Disease/Status   : Healthy
+Confidence       : 94.37%
+
+Severity / Risk Indication
+------------------------------------------------------------
+Level            : No visible disease detected
+Note             : No immediate treatment required.
+
+Management Recommendation
+------------------------------------------------------------
+1. No disease symptoms were detected.
+2. Continue regular field monitoring.
+3. Maintain proper irrigation, spacing, and sanitation.
+4. Avoid unnecessary pesticide application.
+
+Alert Message
+------------------------------------------------------------
+
+SMART FARMING ALERT
+
+Crop: Cotton
+Status: Healthy
+Confidence: 94.37%
+
+Message:
+No visible disease symptoms were detected. Continue regular monitoring and maintain good crop management practices.

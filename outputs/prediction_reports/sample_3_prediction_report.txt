@@ -1,0 +1,40 @@
+SMART FARMING DISEASE DETECTION REPORT
+============================================================
+
+Input Information
+------------------------------------------------------------
+Image Path       : Data\sample\sample_3.jpg
+
+Prediction Result
+------------------------------------------------------------
+Predicted Class  : Corn_Common_Rust
+Crop             : Corn
+Disease/Status   : Common Rust
+Confidence       : 94.02%
+
+Severity / Risk Indication
+------------------------------------------------------------
+Level            : High attention required
+Note             : The model is highly confident about disease presence. Immediate monitoring is recommended.
+
+Management Recommendation
+------------------------------------------------------------
+1. Remove and destroy severely infected leaves or plant parts where appropriate.
+2. Avoid unnecessary overhead irrigation to reduce leaf wetness.
+3. Improve field sanitation and remove crop residues that may carry pathogens.
+4. Maintain proper plant spacing to improve air circulation.
+5. Monitor nearby plants regularly for similar symptoms.
+6. For rust-like symptoms, remove infected leaves and avoid dense planting.
+
+Alert Message
+------------------------------------------------------------
+
+SMART FARMING ALERT
+
+Crop: Corn
+Detected Problem: Common Rust
+Confidence: 94.02%
+Severity / Risk Level: High attention required
+
+Recommended Action:
+Please inspect the affected plant area carefully and follow the suggested management recommendations.

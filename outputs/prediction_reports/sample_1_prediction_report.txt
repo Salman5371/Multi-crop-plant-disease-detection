@@ -1,0 +1,41 @@
+SMART FARMING DISEASE DETECTION REPORT
+============================================================
+
+Input Information
+------------------------------------------------------------
+Image Path       : Data\sample\sample_1.jpg
+
+Prediction Result
+------------------------------------------------------------
+Predicted Class  : Potato_Dry_Rot
+Crop             : Potato
+Disease/Status   : Dry Rot
+Confidence       : 20.32%
+
+Severity / Risk Indication
+------------------------------------------------------------
+Level            : Low confidence / uncertain
+Note             : The prediction is uncertain. Manual inspection or another image is recommended.
+
+Management Recommendation
+------------------------------------------------------------
+1. Remove and destroy severely infected leaves or plant parts where appropriate.
+2. Avoid unnecessary overhead irrigation to reduce leaf wetness.
+3. Improve field sanitation and remove crop residues that may carry pathogens.
+4. Maintain proper plant spacing to improve air circulation.
+5. Monitor nearby plants regularly for similar symptoms.
+6. For rot-like symptoms, avoid waterlogging and improve drainage conditions.
+7. Remove infected plant parts carefully to reduce disease spread.
+
+Alert Message
+------------------------------------------------------------
+
+SMART FARMING ALERT
+
+Crop: Potato
+Detected Problem: Dry Rot
+Confidence: 20.32%
+Severity / Risk Level: Low confidence / uncertain
+
+Recommended Action:
+Please inspect the affected plant area carefully and follow the suggested management recommendations.
