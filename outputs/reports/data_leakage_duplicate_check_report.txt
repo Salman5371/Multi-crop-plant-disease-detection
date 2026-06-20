@@ -1,0 +1,37 @@
+
+DATA LEAKAGE AND DUPLICATE CHECK REPORT
+============================================================
+
+Total images checked: 123588
+
+Exact RGB duplicate groups across train/valid/test:
+1835
+
+Canonical PNG duplicate groups across train/valid/test:
+1835
+
+Potential perceptual duplicate groups across train/valid/test:
+6403
+
+Saved output files:
+1. E:\Research\Multi-crop-plant-disease-detection\outputs\tables\image_hash_records.csv
+2. E:\Research\Multi-crop-plant-disease-detection\outputs\tables\exact_duplicate_groups_all_splits.csv
+3. E:\Research\Multi-crop-plant-disease-detection\outputs\tables\exact_cross_split_duplicates.csv
+4. E:\Research\Multi-crop-plant-disease-detection\outputs\tables\png_duplicate_groups_all_splits.csv
+5. E:\Research\Multi-crop-plant-disease-detection\outputs\tables\png_cross_split_duplicates.csv
+6. E:\Research\Multi-crop-plant-disease-detection\outputs\tables\perceptual_duplicate_groups_all_splits.csv
+7. E:\Research\Multi-crop-plant-disease-detection\outputs\tables\perceptual_cross_split_duplicates.csv
+
+Interpretation:
+This analysis checks whether identical or potentially visually similar images are
+shared across train, validation, and test splits. Cross-split duplicates may cause
+data leakage and can artificially increase model performance. Exact hash matching
+detects identical RGB image content, while canonical PNG hashing reduces the effect
+of file encoding differences. Perceptual hashing is used as a screening method for
+potential visual duplicates, but it should be interpreted cautiously because it may
+also group visually similar but non-identical images.
+
+If no or very few cross-split duplicate groups are found, the evaluation is less
+likely to be affected by duplicate-image leakage. If many cross-split duplicates are
+found, this should be reported as a limitation and the dataset should be cleaned
+before claiming strong generalization.
