@@ -1,0 +1,13 @@
+STATISTICAL SIGNIFICANCE TEST REPORT
+======================================================================
+
+Test used: McNemar's test
+Purpose: Paired comparison of model correctness on the same test samples.
+
+         model_a     model_b  both_correct  model_a_correct_model_b_wrong  model_a_wrong_model_b_correct  both_wrong  mcnemar_statistic      p_value  significant_at_0_05
+EfficientNetV2-S    ResNet50         11587                            308                            283         245              283.0 3.235327e-01                False
+EfficientNetV2-S MobileNetV2         11505                            390                            239         289              239.0 1.866412e-09                 True
+        ResNet50 MobileNetV2         11486                            384                            258         295              258.0 7.478376e-07                 True
+
+Interpretation:
+McNemar's test was used to assess whether the difference in prediction correctness between two models is statistically significant on the same test set. A p-value below 0.05 indicates that the difference between the two models is statistically significant.
